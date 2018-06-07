@@ -1,0 +1,118 @@
+---
+openapi: 3.0.0
+info:
+  title: Klantbeheer
+  description: |
+    API om klanten te beheren
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 1.0.0
+paths:
+  /klanten/{klantId}:
+    get:
+      description: Get Customer
+      responses:
+        200:
+          description: The customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Klant'
+    parameters:
+    - name: klantId
+      in: path
+      description: klantnummer
+      required: true
+      schema:
+        type: string
+components:
+  schemas:
+    Klant:
+      title: Root Type for Klant
+      description: The root of the Klant type's schema.
+      type: object
+      properties:
+        links:
+          type: object
+          properties:
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+        meta:
+          type: object
+          properties:
+            status:
+              type: object
+              properties:
+                statuscode:
+                  type: string
+                detailcode:
+                  type: array
+                  items: {}
+            documentation:
+              type: object
+              properties:
+                majorversion:
+                  type: string
+                minorversion:
+                  type: string
+                build:
+                  type: string
+            transaction:
+              type: object
+              properties:
+                messageid:
+                  type: string
+                correlationid:
+                  type: string
+                conversationid:
+                  type: string
+                created:
+                  format: date-time
+                  type: string
+            consumertransaction:
+              type: object
+              properties:
+                businesstransactionid:
+                  type: string
+                businesstransactioncreated:
+                  format: date-time
+                  type: string
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                naam:
+                  type: string
+                voorletters:
+                  type: string
+                achternaam:
+                  type: string
+                tussenvoegsels:
+                  type: string
+                titel:
+                  type: string
+                aanmaakdatum:
+                  type: string
+                klantadres:
+                  type: array
+                  items: {}
+                klantvoorkeuren:
+                  type: array
+                  items: {}
+                haren:
+                  type: object
+                  properties:
+                    lengte:
+                      type: string
+                    kleur:
+                      type: string
